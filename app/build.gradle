@@ -16,6 +16,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a'
+            universalApk true
+        }
+    }
 }
 
 dependencies {
@@ -27,9 +39,17 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    def room_version = "1.1.1"
+    def lifecycle_version = "1.1.1"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.android.support:design:27.1.1'
     implementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-rc02'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
 }
 
 def localPropertiesFile = rootProject.file("local.properties")
@@ -48,3 +68,5 @@ android {
     // ...
 
 }
+
+
